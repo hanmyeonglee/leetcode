@@ -4,6 +4,13 @@ package main
 
 import (
 	"fmt"
+	"reflect"
+)
+
+const (
+	colorReset = "\033[0m"
+	colorRed   = "\033[31m"
+	colorGreen = "\033[32m"
 )
 
 type (
@@ -23,12 +30,20 @@ func outputToString(output Output) string {
 	return fmt.Sprint(output)
 }
 
+func compare(want, got Output) bool {
+	return reflect.DeepEqual(want, got)
+}
+
 func test(idx int, input Input, want Output) {
 	got := solution(input)
-	fmt.Printf("##### Test case %d #####\n", idx)
+	color := colorRed
+	if compare(want, got) {
+		color = colorGreen
+	}
+	fmt.Printf("%s##### Test case %d #####\n", color, idx)
 	fmt.Printf("Input: %s\n", inputToString(input))
 	fmt.Printf("Want: %s\n", outputToString(want))
-	fmt.Printf("Got: %s\n\n", outputToString(got))
+	fmt.Printf("Got: %s%s\n\n", outputToString(got), colorReset)
 }
 
 func main() {
