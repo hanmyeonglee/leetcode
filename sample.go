@@ -25,10 +25,10 @@ func outputToString(output Output) string {
 
 func test(idx int, input Input, want Output) {
 	got := solution(input)
-	fmt.Println("##### Test case ", idx, " #####")
-	fmt.Println("Input: ", inputToString(input))
-	fmt.Println("Want: ", outputToString(want))
-	fmt.Println("Got: ", outputToString(got), "\n")
+	fmt.Printf("##### Test case %d #####\n", idx)
+	fmt.Printf("Input: %s\n", inputToString(input))
+	fmt.Printf("Want: %s\n", outputToString(want))
+	fmt.Printf("Got: %s\n\n", outputToString(got))
 }
 
 func main() {
