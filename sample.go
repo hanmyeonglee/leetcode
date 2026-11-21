@@ -15,12 +15,20 @@ func solution(input Input) Output {
 	return nil
 }
 
+func inputToString(input Input) string {
+	return fmt.Sprint(input)
+}
+
+func outputToString(output Output) string {
+	return fmt.Sprint(output)
+}
+
 func test(idx int, input Input, want Output) {
 	got := solution(input)
-	println("##### Test case ", idx, " #####")
-	println("Input: ", fmt.Sprint(input))
-	println("Want: ", fmt.Sprint(want))
-	println("Got: ", fmt.Sprint(got), "\n")
+	fmt.Println("##### Test case ", idx, " #####")
+	fmt.Println("Input: ", inputToString(input))
+	fmt.Println("Want: ", outputToString(want))
+	fmt.Println("Got: ", outputToString(got), "\n")
 }
 
 func main() {
