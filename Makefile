@@ -1,6 +1,6 @@
 GO_FILES := $(filter-out sample.go,$(wildcard *.go))
 
-.PHONY: prepare git $(GO_FILES)
+.PHONY: prepare run git $(GO_FILES)
 
 URL ?= $(or $(url),$(word 2,$(MAKECMDGOALS)))
 FILE ?= $(or $(file),$(word 2,$(MAKECMDGOALS)))
@@ -23,6 +23,20 @@ prepare:
 	cp sample.go "$$file"; \
 	echo "Created $$file from sample.go"
 
+run:
+	@file="$(FILE)"; \
+	if [ -z "$$file" ]; then \
+		echo "Usage: make run <filename>"; \
+		exit 1; \
+	fi; \
+	if [ ! -f "$$file" ]; then \
+		echo "Error: File '$$file' does not exist."; \
+		exit 1; \
+	fi; \
+	gofmt -s -w "$$file" && \
+	go vet "$$file" && \
+	go run "$$file"
+
 git:
 	@file="$(FILE)"; \
 	if [ -z "$$file" ]; then \
@@ -33,6 +47,8 @@ git:
 		echo "Error: File '$$file' does not exist."; \
 		exit 1; \
 	fi; \
+	gofmt -s -w "$$file" && \
+	go vet "$$file" && \
 	name=$$(basename "$$file" .go); \
 	msg="solve https://leetcode.com/problems/$$name"; \
 	git add "$$file" && \
