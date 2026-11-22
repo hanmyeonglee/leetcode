@@ -34,9 +34,12 @@ make run two-sum.go
 ### 3. Format, lint, commit, and push
 
 Commits only the target file with `solve https://leetcode.com/problems/<name>` and pushes to `origin`.
+If `<filename>` is omitted and there is exactly one new (untracked) `.go` file, it is automatically selected.
 
 ```bash
 make git two-sum.go
+# or auto-detect single new .go file
+make git
 ```
 
 ## Shared Data Structures (`ds/`)
