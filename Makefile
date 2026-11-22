@@ -37,8 +37,14 @@ run:
 git:
 	@file="$(FILE)"; \
 	if [ -z "$$file" ]; then \
-		echo "Usage: make git <filename>"; \
-		exit 1; \
+		untracked=$$(git ls-files --others --exclude-standard); \
+		count=$$(printf '%s\n' "$$untracked" | grep -c . || true); \
+		if [ "$$count" -eq 1 ] && case "$$untracked" in *.go) true;; *) false;; esac; then \
+			file="$$untracked"; \
+		else \
+			echo "Usage: make git <filename>"; \
+			exit 1; \
+		fi; \
 	fi; \
 	if [ ! -f "$$file" ]; then \
 		echo "Error: File '$$file' does not exist."; \
