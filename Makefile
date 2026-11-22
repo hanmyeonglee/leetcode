@@ -8,10 +8,7 @@ FILE ?= $(or $(file),$(word 2,$(MAKECMDGOALS)))
 prepare:
 	@url="$(URL)"; \
 	if [ -z "$$url" ]; then \
-		read -p "LeetCode URL: " url; \
-	fi; \
-	if [ -z "$$url" ]; then \
-		echo "Usage: make prepare <leetcode-url> (or make prepare URL=<leetcode-url>)"; \
+		echo "Usage: make prepare <leetcode-url>"; \
 		exit 1; \
 	fi; \
 	name=$$(echo "$$url" | sed -E 's|[?#].*$$||; s|/+$$||; s|.*/problems/([^/]+).*|\1|; s|.*/||'); \
