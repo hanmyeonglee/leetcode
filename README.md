@@ -50,9 +50,17 @@ Common LeetCode data structures live under `ds/`. Use a type alias in problem fi
 import "leetcode/ds"
 
 type ListNode = ds.ListNode[int]
+type TreeNode = ds.TreeNode[int]
 ```
 
+**ListNode**
 - `ds.NewList(vals ...T)` — create a linked list
-- `(*ListNode).String()` — `fmt.Stringer` (cycle-safe)
-- `(*ListNode).Clone()` — deep copy (useful for in-place problems)
-- `(*ListNode).Equal(other)` — value equality check
+- `(*ListNode).String()`
+- `(*ListNode).Clone()`
+- `(*ListNode).Equal(other)`
+
+**TreeNode**
+- `ds.NewTree[T](vals ...any)` — create a binary tree from LeetCode level-order format (e.g. `ds.NewTree[int](1, 2, 3, nil, 5)`)
+- `(*TreeNode).String()`
+- `(*TreeNode).Clone()`
+- `(*TreeNode).Equal(other)`
