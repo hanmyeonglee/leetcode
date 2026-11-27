@@ -26,9 +26,12 @@ make prepare https://leetcode.com/problems/two-sum
 ### 2. Format, lint, and run
 
 Runs `gofmt -s -w`, `go vet`, and `go run` in sequence.
+If `<filename>` is omitted and there is exactly one new (untracked) `.go` file, it is automatically selected.
 
 ```bash
 make run two-sum.go
+# or auto-detect single new .go file
+make run
 ```
 
 ### 3. Format, lint, commit, and push
